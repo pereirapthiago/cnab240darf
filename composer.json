@@ -1,0 +1,23 @@
+{
+  "name": "pereirapthiago/cnab240",
+  "description": "Este projeto é um gerador de arquivos CNAB240 para pagamentos de DARF.",
+  "type": "library",
+  "license": "GPL-3.0-or-later",
+  "autoload": {
+    "psr-4": {
+      "Atlantic\\Cnab240\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "pereirapthiago",
+      "email": "pereirapthiago@yahoo.com.br"
+    }
+  ],
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.3"
+  }
+}
