@@ -139,7 +139,7 @@ class ItauRemessaReader implements RemessaReaderInterface
     {
         try {
             $linhaTrailerArquivo = $this->fileLines[count($this->fileLines) - 1];
-            $layoutTrailerArquivo = ItauLayout::getTrailerLoteLayout();
+            $layoutTrailerArquivo = ItauLayout::getTrailerArquivoLayout();
 
             $trailerLote = [];
             foreach ($layoutTrailerArquivo as $l) {

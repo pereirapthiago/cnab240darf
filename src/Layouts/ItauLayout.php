@@ -119,17 +119,17 @@ class ItauLayout
     public static function getTrailerLoteLayout(): array
     {
         return [
-            ['start' => 1, 'end' => 3, 'name' => 'codigo_banco', 'length' => 3, 'description' => 'Código do banco = 341', 'type' => 'numeric'],
-            ['start' => 4, 'end' => 7, 'name' => 'codigo_lote', 'length' => 4, 'description' => 'Lote de serviço', 'type' => 'numeric'],
-            ['start' => 8, 'end' => 8, 'name' => 'tipo_registro', 'length' => 1, 'description' => 'Registro trailer arquivo = 5', 'type' => 'numeric'],
-            ['start' => 9, 'end' => 17, 'name' => 'complemento_registro', 'length' => 9, 'description' => 'Complemento de registo', 'type' => 'alpha'],
-            ['start' => 18, 'end' => 23, 'name' => 'quantidade_registros', 'length' => 6, 'description' => 'Quantidade de registros do lote', 'type' => 'numeric'],
-            ['start' => 24, 'end' => 37, 'name' => 'valor_total', 'length' => 14, 'description' => 'Soma valor principal dos pagamentos do lote', 'type' => 'numeric'],
-            ['start' => 38, 'end' => 51, 'name' => 'total_outras_ent', 'length' => 14, 'description' => 'Soma valores de outras entidades lote', 'type' => 'numeric'],
-            ['start' => 52, 'end' => 65, 'name' => 'total_valores_multa_mora', 'length' => 14, 'description' => 'Soma valores atualizados monet/multa/mora', 'type' => 'numeric'],
-            ['start' => 66, 'end' => 79, 'name' => 'total_valor_arrecadado', 'length' => 14, 'description' => 'Soma valor dos pags do lote', 'type' => 'numeric'],
-            ['start' => 80, 'end' => 230, 'name' => 'complemento_registro2', 'length' => 151, 'description' => 'Complemento de registro', 'type' => 'alpha'],
-            ['start' => 231, 'end' => 240, 'name' => 'codigo_ocorrencia', 'length' => 10, 'description' => 'Codigo ocorrencia para retorno', 'type' => 'alpha'],
+            ['start' => 1, 'end' => 3, 'name' => 'codigo_banco', 'length' => 3, 'description' => 'CÓDIGO BANCO NA COMPENSAÇÃO', 'type' => 'numeric'],
+            ['start' => 4, 'end' => 7, 'name' => 'codigo_lote', 'length' => 4, 'description' => 'LOTE DE SERVIÇO', 'type' => 'numeric'],
+            ['start' => 8, 'end' => 8, 'name' => 'tipo_registro', 'length' => 1, 'description' => 'REGISTRO TRAILER DE LOTE = 5', 'type' => 'numeric'],
+            ['start' => 9, 'end' => 17, 'name' => 'complemento_registro', 'length' => 9, 'description' => 'COMPLEMENTO DE REGISTRO', 'type' => 'alpha'],
+            ['start' => 18, 'end' => 23, 'name' => 'quantidade_registros', 'length' => 6, 'description' => 'QTDE REGISTROS DO LOTE', 'type' => 'numeric'],
+            ['start' => 24, 'end' => 37, 'name' => 'valor_total', 'length' => 14, 'description' => 'SOMA VALOR PRINCIPAL DOS PGTOS DO LOTE', 'type' => 'numeric'],
+            ['start' => 38, 'end' => 51, 'name' => 'total_outras_ent', 'length' => 14, 'description' => 'SOMA VALORES DE OUTRAS ENTIDADES DO LOTE', 'type' => 'numeric'],
+            ['start' => 52, 'end' => 65, 'name' => 'total_valores_multa_mora', 'length' => 14, 'description' => 'SOMA VALORES ATUALIZ. MONET/MULTA/MORA', 'type' => 'numeric'],
+            ['start' => 66, 'end' => 79, 'name' => 'total_valor_arrecadado', 'length' => 14, 'description' => 'SOMA VALOR DOS PAGAMENTOS DO LOTE', 'type' => 'numeric'],
+            ['start' => 80, 'end' => 230, 'name' => 'complemento_registro2', 'length' => 151, 'description' => 'COMPLEMENTO DE REGISTRO', 'type' => 'alpha'],
+            ['start' => 231, 'end' => 240, 'name' => 'codigo_ocorrencia', 'length' => 10, 'description' => 'CÓDIGOS OCORRÊNCIAS P/ RETORNO', 'type' => 'alpha'],
         ];
     }
 
@@ -142,13 +142,13 @@ class ItauLayout
     public static function getTrailerArquivoLayout(): array
     {
         return [
-            ['start' => 1, 'end' => 3, 'name' => 'codigo_banco', 'length' => 3, 'description' => 'Código do banco = 341', 'type' => 'numeric'],
-            ['start' => 4, 'end' => 7, 'name' => 'codigo_lote', 'length' => 4, 'description' => 'Lote de serviço = 9999', 'type' => 'numeric'],
-            ['start' => 8, 'end' => 8, 'name' => 'tipo_registro', 'length' => 1, 'description' => 'Registro trailer arquivo = 9', 'type' => 'numeric'],
-            ['start' => 9, 'end' => 17, 'name' => 'complemento_registro', 'length' => 9, 'description' => 'Uso exclusivo FEBRABAN/CNAB', 'type' => 'alpha'],
+            ['start' => 1, 'end' => 3, 'name' => 'codigo_banco', 'length' => 3, 'description' => 'CÓDIGO BANCO NA COMPENSAÇÃO = 341', 'type' => 'numeric'],
+            ['start' => 4, 'end' => 7, 'name' => 'codigo_lote', 'length' => 4, 'description' => 'LOTE DE SERVIÇO = 9999', 'type' => 'numeric'],
+            ['start' => 8, 'end' => 8, 'name' => 'tipo_registro', 'length' => 1, 'description' => 'REGISTRO TRAILER DE ARQUIVO = 9', 'type' => 'numeric'],
+            ['start' => 9, 'end' => 17, 'name' => 'complemento_registro', 'length' => 9, 'description' => 'COMPLEMENTO DE REGISTRO', 'type' => 'alpha'],
             ['start' => 18, 'end' => 23, 'name' => 'quantidade_lotes', 'length' => 6, 'description' => 'QTDE LOTES DO ARQUIVO', 'type' => 'numeric'],
             ['start' => 24, 'end' => 29, 'name' => 'quantidade_registros', 'length' => 6, 'description' => 'QTDE REGISTROS DO ARQUIVO', 'type' => 'numeric'],
-            ['start' => 30, 'end' => 240, 'name' => 'complemento_registro', 'length' => 211, 'description' => 'Complemento', 'type' => 'alpha'],
+            ['start' => 30, 'end' => 240, 'name' => 'complemento_registro2', 'length' => 211, 'description' => 'COMPLEMENTO DE REGISTRO', 'type' => 'alpha'],
         ];
     }
 }
