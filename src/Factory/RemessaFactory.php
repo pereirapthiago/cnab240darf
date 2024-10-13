@@ -2,6 +2,7 @@
 
 namespace Atlantic\Cnab240\Factory;
 
+use Atlantic\Cnab240\Bancos\Bradesco\BradescoRemessa;
 use Atlantic\Cnab240\Bancos\Itau\ItauRemessa;
 use Atlantic\Cnab240\Interfaces\RemessaInterface;
 
@@ -17,6 +18,8 @@ class RemessaFactory {
         switch ($bank) {
             case 'itau':
                 return new ItauRemessa();
+            case 'bradesco':
+                return new BradescoRemessa();
             default:
                 throw new \Exception("Banco não suportado.");
         }

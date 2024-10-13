@@ -4,6 +4,7 @@ namespace Atlantic\Cnab240\Factory;
 
 namespace Atlantic\Cnab240\Factory;
 
+use Atlantic\Cnab240\Bancos\Bradesco\BradescoRemessaReader;
 use Atlantic\Cnab240\Bancos\Itau\ItauRemessaReader;
 use Atlantic\Cnab240\Interfaces\RemessaReaderInterface;
 
@@ -20,6 +21,8 @@ class RemessaReaderFactory
         switch ($bank) {
             case 'itau':
                 return new ItauRemessaReader();
+            case 'bradesco':
+                return new BradescoRemessaReader();
             default:
                 throw new \Exception("Banco não suportado.");
         }
