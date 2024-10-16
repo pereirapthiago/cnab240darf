@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace Atlantic\Cnab240\Bancos\Bradesco;
 
 use Atlantic\Cnab240\GeradorArquivo\RemessaAbstract;
-use Atlantic\Cnab240\Layouts\ItauLayout;
+use Atlantic\Cnab240\Layouts\BradescoLayout;
+
 
 class BradescoRemessa extends RemessaAbstract
 {
@@ -15,7 +16,7 @@ class BradescoRemessa extends RemessaAbstract
     private $dadosBanco = [
         'codigo_banco' => '237',
         'n_versao_layout' => '089',
-        'nome'=>'BRADESCO'
+        'nome' => 'BRADESCO'
 
     ];
 
@@ -35,22 +36,25 @@ class BradescoRemessa extends RemessaAbstract
     {
         $dadosHeaderArquivo = [
             'codigo_banco' => $this->dadosBanco['codigo_banco'],
-            'tipo_registro' => '0',
-            'n_versao_layout' => $this->dadosBanco['n_versao_layout'],
-            'tipo_inscricao' => '2',
-            'nome_banco' => $this->dadosBanco['nome'],
             'lote_servico' => '0000',
-            'arquivo_codigo'=> '1',
+            'tipo_registro' => '0',
+            'tipo_inscricao' => '2',
             'cnpj' => $this->dadosEmpresa['Empresa']['cnpj'],
+            'codigo_convenio_banco' => $this->dadosEmpresa['DadosBancario']['codigo_convenio_banco'],
             'agencia' => $this->dadosEmpresa['DadosBancario']['agencia'],
+            'digito_agencia' => $this->dadosEmpresa['DadosBancario']['digito_agencia'],
             'conta' => $this->dadosEmpresa['DadosBancario']['conta'],
+            'digito_conta' => $this->dadosEmpresa['DadosBancario']['digito_conta'],
             'nome_empresa' => $this->dadosEmpresa['Empresa']['razaoSocial'],
+            'nome_banco' => $this->dadosBanco['nome'],
+            'arquivo_codigo' => '1',
             'data_geracao' => $this->dataGeracao,
             'hora_geracao' => $this->horaGeracao,
-            'numero_seq_arquivo' => 1
+            'numero_seq_arquivo' => 1,
+            'n_versao_layout' => '089'
         ];
 
-        return $this->generateLinha(ItauLayout::getHeaderArquivoLayout(), $dadosHeaderArquivo);
+        return $this->generateLinha(BradescoLayout::getHeaderArquivoLayout(), $dadosHeaderArquivo);
     }
 
 
@@ -60,35 +64,31 @@ class BradescoRemessa extends RemessaAbstract
     private function genareteHeaderLote(): string
     {
         $dadosHeaderLote = [
-            'codigo_banco' => '237',
+            'codigo_banco' => $this->dadosBanco['codigo_banco'],
             'codigo_lote' => '0001',
             'tipo_registro' => '1',
             'tipo_operacao' => 'C',
-            'tipo_pagamento' => '22',
-            'forma_pagamento' => '16',
+            'tipo_servico' => '22',
+            'forma_lancamento' => '16',
             'layout_lote' => '030',
             'complemento_registro' => '',
             'tipo_inscricao' => '2',
             'cnpj_cpf' => $this->dadosEmpresa['Empresa']['cnpj'],
-            'complemento_registro2' => '',
+            'codigo_convenio_banco' => '',
             'agencia' => $this->dadosEmpresa['DadosBancario']['agencia'],
-            'complemento_registro3' => '',
+            'digito_agencia' => $this->dadosEmpresa['DadosBancario']['digito_agencia'],
             'conta' => $this->dadosEmpresa['DadosBancario']['conta'],
-            'complemento_registro4' => '',
-            'dac' => $this->dadosEmpresa['DadosBancario']['digito'],
+            'digito_conta' => $this->dadosEmpresa['DadosBancario']['digito_conta'],
             'nome_empresa' => $this->dadosEmpresa['Empresa']['razaoSocial'],
-            'finalidade_lote' => '',
-            'historico_cc' => '',
             'endereco_empresa' => $this->dadosEmpresa['Empresa']['endereco'],
             'numero_empresa' => $this->dadosEmpresa['Empresa']['numero'],
             'complemento_empresa' => $this->dadosEmpresa['Empresa']['complemento'],
             'cidade_empresa' => $this->dadosEmpresa['Empresa']['cidade'],
             'cep_empresa' => $this->dadosEmpresa['Empresa']['cep'],
             'estado' => $this->dadosEmpresa['Empresa']['uf'],
-            'complemento_registro5' => '',
-            'codigo_ocorrencia' => ''
+            'ind_forma_pag_compr' => '01',
         ];
-        return $this->generateLinha(ItauLayout::getHeaderLoteLyout(), $dadosHeaderLote);
+        return $this->generateLinha(BradescoLayout::getHeaderLoteLyout(), $dadosHeaderLote);
     }
 
     /**
@@ -100,16 +100,31 @@ class BradescoRemessa extends RemessaAbstract
     private function generateLote(array $data, int $numeroLinha): string
     {
         $dadosFixos = [
-            'codigo_banco' => '237',
+            'codigo_banco' => $this->dadosBanco['codigo_banco'],
             'codigo_lote' => '0001',
             'tipo_registro' => '3',
             'numero_registro' => str_pad((string)$numeroLinha, 5, '0', STR_PAD_LEFT),
             'codigo_segmento' => 'N',
-            'tipo_movimento' => '000',
-            'codigo_ocorrencia' => ''
+            'tipo_movimento' => '0',
+            'codigo_movimento' => '00',
+            'numero_atribuido_empresa' => '',
+            'nome_contribuinte' => '',
+            'data_pagamento' => '',
+            'valor_pagamento' => '',
+            'identificacao_tributo' => '0190',
+            'tipo_inscricao' => '1',
+            'cpf_contribuinte' => '',
+            'codigo_identificacao_tributo' => '16',
+            'periodo_apuracao' => '',
+            'referencia' => '',
+            'valor_principal' => '',
+            'valor_multa' => '',
+            'valor_juros' => '',
+            'data_vencimento' => '',
         ];
+
         $dadosLote = array_merge($dadosFixos, $data);
-        return $this->generateLinha(ItauLayout::getLoteLayout(), $dadosLote);
+        return $this->generateLinha(BradescoLayout::getLoteLayout(), $dadosLote);
     }
 
     /**
@@ -121,11 +136,11 @@ class BradescoRemessa extends RemessaAbstract
     private function generateTrailerLote(array $dadosLote): string
     {
         $valorTotal = array_reduce($dadosLote, function ($carry, $item) {
-            return $carry += $item['valor_total'];
+            return $carry += $item['valor_pagamento'];
         }, 0);
 
         $dadosTrailerLote = [
-            'codigo_banco' => '237',
+            'codigo_banco' => $this->dadosBanco['codigo_banco'],
             'codigo_lote' => '0001',
             'tipo_registro' => '5',
             'complemento_registro' => '',
@@ -137,7 +152,7 @@ class BradescoRemessa extends RemessaAbstract
             'complemento_registro2' => '',
             'codigo_ocorrencia' => '',
         ];
-        return $this->generateLinha(ItauLayout::getTrailerLoteLayout(), $dadosTrailerLote);
+        return $this->generateLinha(BradescoLayout::getTrailerLoteLayout(), $dadosTrailerLote);
     }
 
     /**
@@ -149,7 +164,7 @@ class BradescoRemessa extends RemessaAbstract
     private function generateTrailerArquivo(int $qtdLotes, int $qtdRegistros): string
     {
         $dadosTrailerArquivo = [
-            'codigo_banco' => '237',
+            'codigo_banco' => $this->dadosBanco['codigo_banco'],
             'codigo_lote' => '9999',
             'tipo_registro' => '9',
             'complemento_registro' => '',
@@ -157,7 +172,7 @@ class BradescoRemessa extends RemessaAbstract
             'quantidade_registros' => $qtdRegistros,
             'complemento_registro' => '',
         ];
-        return $this->generateLinha(ItauLayout::getTrailerArquivoLayout(), $dadosTrailerArquivo);
+        return $this->generateLinha(BradescoLayout::getTrailerArquivoLayout(), $dadosTrailerArquivo);
     }
 
 
