@@ -51,7 +51,8 @@ class BradescoRemessa extends RemessaAbstract
             'data_geracao' => $this->dataGeracao,
             'hora_geracao' => $this->horaGeracao,
             'numero_seq_arquivo' => 1,
-            'n_versao_layout' => '089'
+            'n_versao_layout' => '089',
+            'unidade_densidade' => '6250'
         ];
 
         return $this->generateLinha(BradescoLayout::getHeaderArquivoLayout(), $dadosHeaderArquivo);
@@ -70,11 +71,11 @@ class BradescoRemessa extends RemessaAbstract
             'tipo_operacao' => 'C',
             'tipo_servico' => '22',
             'forma_lancamento' => '16',
-            'layout_lote' => '030',
+            'layout_lote' => '012',
             'complemento_registro' => '',
             'tipo_inscricao' => '2',
             'cnpj_cpf' => $this->dadosEmpresa['Empresa']['cnpj'],
-            'codigo_convenio_banco' => '',
+            'codigo_convenio_banco' => $this->dadosEmpresa['DadosBancario']['codigo_convenio_banco'],
             'agencia' => $this->dadosEmpresa['DadosBancario']['agencia'],
             'digito_agencia' => $this->dadosEmpresa['DadosBancario']['digito_agencia'],
             'conta' => $this->dadosEmpresa['DadosBancario']['conta'],
@@ -103,24 +104,16 @@ class BradescoRemessa extends RemessaAbstract
             'codigo_banco' => $this->dadosBanco['codigo_banco'],
             'codigo_lote' => '0001',
             'tipo_registro' => '3',
-            'numero_registro' => str_pad((string)$numeroLinha, 5, '0', STR_PAD_LEFT),
+            'numero_registro' => $numeroLinha,
             'codigo_segmento' => 'N',
             'tipo_movimento' => '0',
             'codigo_movimento' => '00',
-            'numero_atribuido_empresa' => '',
-            'nome_contribuinte' => '',
-            'data_pagamento' => '',
-            'valor_pagamento' => '',
-            'identificacao_tributo' => '0190',
-            'tipo_inscricao' => '1',
-            'cpf_contribuinte' => '',
-            'codigo_identificacao_tributo' => '16',
-            'periodo_apuracao' => '',
-            'referencia' => '',
-            'valor_principal' => '',
-            'valor_multa' => '',
-            'valor_juros' => '',
-            'data_vencimento' => '',
+            'numero_atribuido_banco' => '',
+            'codigo_receita_tributo' => '0190',
+            'tipo_inscricao' => '01',
+            'codigo_iden_tributo' => '16',
+            'uso_febraban' => '',
+            'codigo_ocorrencias' => '',
         ];
 
         $dadosLote = array_merge($dadosFixos, $data);
@@ -144,7 +137,7 @@ class BradescoRemessa extends RemessaAbstract
             'codigo_lote' => '0001',
             'tipo_registro' => '5',
             'complemento_registro' => '',
-            'quantidade_registros' => count($dadosLote),
+            'quantidade_registros' => count($dadosLote) + 2,
             'valor_total' => $valorTotal,
             'total_outras_ent' => '',
             'total_valores_multa_mora' => '',
@@ -196,7 +189,7 @@ class BradescoRemessa extends RemessaAbstract
             $l .= $this->generateLote($lote, $totalRegistros) . PHP_EOL;
         }
         $trailerLote = $this->generateTrailerLote($dadosLotes);
-        $trailerArquivo = $this->generateTrailerArquivo(1, $totalRegistros);
+        $trailerArquivo = $this->generateTrailerArquivo(1, $totalRegistros + 4);
 
         $arquivo = $headerArquivo . PHP_EOL;
         $arquivo .= $headerLote . PHP_EOL;

@@ -17,20 +17,25 @@ abstract class RemessaAbstract implements RemessaInterface
         $linha = '';
 
         foreach ($layout as $field) {
-            $value = $data[$field['name']] ?? '';
-            if($value != '') {
-                $value = substr($data[$field['name']], 0, $field['length']);
+            $value = isset($data[$field['name']]) ? $data[$field['name']] : ''; // Usa o valor do array de dados ou uma string vazia
+
+            // Aplica substr apenas se o valor não estiver vazio
+            if (!empty($value)) {
+                $value = substr($value, 0, $field['length']);
             }
 
-            if($field['type'] === 'numeric'){
-                $paddedValue = str_pad($value, $field['length'],'0', STR_PAD_LEFT);
-            }else{
-                $paddedValue = str_pad($value, $field['length'], ' ', STR_PAD_RIGHT);
-            }
+            // Preenche de acordo com o tipo de campo
+            if ($field['type'] === 'numeric') {
+                $paddedValue = str_pad($value, $field['length'], '0', STR_PAD_LEFT); // Zeros à esquerda para numéricos
+            } else {
+                $paddedValue = str_pad($value, $field['length'], ' ', STR_PAD_RIGHT); // Espaços à direita para alfanuméricos
 
+            }
             $linha .= $paddedValue;
         }
 
-        return str_pad($linha, 240, ' '); // Garante que a linha tenha 240 caracteres
+        return str_pad($linha, 240, ' '); // Garante 240 caracteres na linha final
     }
+
+
 }

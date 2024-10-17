@@ -45,7 +45,8 @@ class BradescoLayout
      *
      * @return array
      */
-    public static function getHeaderLoteLyout(): array{
+    public static function getHeaderLoteLyout(): array
+    {
         return [
             ['start' => 1, 'end' => 3, 'name' => 'codigo_banco', 'length' => 3, 'description' => 'Código banco na compensacao', 'type' => 'numeric'],
             ['start' => 4, 'end' => 7, 'name' => 'codigo_lote', 'length' => 4, 'description' => 'Lote identificacao de pagtos', 'type' => 'numeric'],
@@ -92,24 +93,24 @@ class BradescoLayout
             ['start' => 9, 'end' => 13, 'name' => 'numero_registro', 'length' => 5, 'description' => 'Numero sequencial registro lote', 'type' => 'numeric'],
             ['start' => 14, 'end' => 14, 'name' => 'codigo_segmento', 'length' => 1, 'description' => 'Codigo segmento reg detalhe = N', 'type' => 'alpha'],
             ['start' => 15, 'end' => 15, 'name' => 'tipo_movimento', 'length' => 1, 'description' => 'Tipo de movimento = 0', 'type' => 'numeric'],
-            ['start' => 16, 'end' => 17, 'name' => 'codigo_movimento', 'length' => 2, 'description' => 'Código da Instrução de Movimento = 00', 'type' => 'numeric'],
+            ['start' => 16, 'end' => 17, 'name' => 'codigo_movimento', 'length' => 2, 'description' => 'Codigo da Instrução de Movimento = 00', 'type' => 'numeric'],
             ['start' => 18, 'end' => 37, 'name' => 'numero_atribuido_empresa', 'length' => 20, 'description' => 'Nº do Docto Atribuído pela Empresa', 'type' => 'alpha'],
-            ['start' => 38, 'end' => 57, 'name' => 'numero_atribuido_banco', 'length' => 20, 'description' => 'Nº do Docto Atribuído pelo Banco', 'type' => 'alpha'],
+            ['start' => 38, 'end' => 57, 'name' => 'numero_atribuido_banco', 'length' => 20, 'description' => 'N do Docto Atribuído pelo Banco', 'type' => 'alpha'],
             ['start' => 58, 'end' => 87, 'name' => 'nome_contribuinte', 'length' => 30, 'description' => 'Nome do Contribuinte', 'type' => 'alpha'],
             ['start' => 88, 'end' => 95, 'name' => 'data_pagamento', 'length' => 8, 'description' => 'Data do Pagamento', 'type' => 'numeric'],
-            ['start' => 96, 'end' => 110, 'name' => 'valor_pagamento', 'length' => 13, 'description' => 'Valor do Total do Pagamento', 'type' => 'numeric'],
-            ['start' => 111, 'end' => 116, 'name' => 'identificacao_tributo', 'length' => 6, 'description' => 'Código da Receita do Tributo', 'type' => 'alpha'],
-            ['start' => 117, 'end' => 118, 'name' => 'tipo_inscricao', 'length' => 2, 'description' => 'Tipo de Identificação do Contribuinte = 01', 'type' => 'numeric'],
-            ['start' => 119, 'end' => 132, 'name' => 'cpf_contribuinte', 'length' => 14, 'description' => 'CPF/CNPJ do contribuinte', 'type' => 'numeric'],
-            ['start' => 133, 'end' => 134, 'name' => 'codigo_identificacao_tributo', 'length' => 2, 'description' => 'Código de Identificação do Tributo = 16', 'type' => 'alpha'],
-            ['start' => 135, 'end' => 142, 'name' => 'periodo_apuracao', 'length' => 8, 'description' => 'Período de Apuração', 'type' => 'numeric'],
-            ['start' => 143, 'end' => 159, 'name' => 'referencia', 'length' => 17, 'description' => 'Número de Referência', 'type' => 'numeric'],
-            ['start' => 160, 'end' => 174, 'name' => 'valor_principal', 'length' => 13, 'description' => 'Valor Principal', 'type' => 'numeric'],
-            ['start' => 175, 'end' => 189, 'name' => 'valor_multa', 'length' => 13, 'description' => 'Valor da Multa', 'type' => 'numeric'],
-            ['start' => 190, 'end' => 204, 'name' => 'valor_juros', 'length' => 13, 'description' => 'Valor juros', 'type' => 'numeric'],
-            ['start' => 205, 'end' => 212, 'name' => 'data_vencimento', 'length' => 8, 'description' => 'Nº DOCTO ATRIBUÍDO PELA EMPRESA', 'type' => 'numeric'],
+            ['start' => 96, 'end' => 110, 'name' => 'valor_pagamento', 'length' => 15, 'description' => 'Valor do Total do Pagamento', 'type' => 'numeric'],
+            ['start' => 111, 'end' => 116, 'name' => 'codigo_receita_tributo', 'length' => 6, 'description' => 'Codigo da receita do Tributo', 'type' => 'numeric'],
+            ['start' => 117, 'end' => 118, 'name' => 'tipo_inscricao', 'length' => 2, 'description' => 'Tipo de Identificacao do Contribuinte = 01', 'type' => 'numeric'],
+            ['start' => 119, 'end' => 132, 'name' => 'cpf_contribuinte', 'length' => 14, 'description' => 'CPF ou CNPJ do contribuinte', 'type' => 'numeric'],
+            ['start' => 133, 'end' => 134, 'name' => 'codigo_iden_tributo', 'length' => 2, 'description' => 'Codigo de Identificação do Tributo = 16', 'type' => 'alpha'],
+            ['start' => 135, 'end' => 142, 'name' => 'periodo_apuracao', 'length' => 8, 'description' => 'Período de Apuracao', 'type' => 'numeric'],
+            ['start' => 143, 'end' => 159, 'name' => 'referencia', 'length' => 17, 'description' => 'Numero de Referencia', 'type' => 'numeric'],
+            ['start' => 160, 'end' => 174, 'name' => 'valor_principal', 'length' => 15, 'description' => 'Valor Principal', 'type' => 'numeric'],
+            ['start' => 175, 'end' => 189, 'name' => 'valor_multa', 'length' => 15, 'description' => 'Valor da Multa', 'type' => 'numeric'],
+            ['start' => 190, 'end' => 204, 'name' => 'valor_juros', 'length' => 15, 'description' => 'Valor juros', 'type' => 'numeric'],
+            ['start' => 205, 'end' => 212, 'name' => 'data_vencimento', 'length' => 8, 'description' => 'Data de Vencimento', 'type' => 'numeric'],
             ['start' => 213, 'end' => 230, 'name' => 'uso_febraban', 'length' => 18, 'description' => 'Uso Exclusivo FEBRABAN/CNAB', 'type' => 'alpha'],
-            ['start' => 231, 'end' => 240, 'name' => 'codigo_ocorrencias', 'length' => 10, 'description' => 'Códigos das Ocorrências p/ Retorno', 'type' => 'alpha'],
+            ['start' => 231, 'end' => 240, 'name' => 'codigo_ocorrencias', 'length' => 10, 'description' => 'Codigos das Ocorrencias p/ Retorno', 'type' => 'alpha'],
         ];
     }
 
@@ -127,8 +128,8 @@ class BradescoLayout
             ['start' => 8, 'end' => 8, 'name' => 'tipo_registro', 'length' => 1, 'description' => 'REGISTRO TRAILER DE LOTE = 5', 'type' => 'numeric'],
             ['start' => 9, 'end' => 17, 'name' => 'complemento_registro', 'length' => 9, 'description' => 'COMPLEMENTO DE REGISTRO', 'type' => 'alpha'],
             ['start' => 18, 'end' => 23, 'name' => 'quantidade_registros', 'length' => 6, 'description' => 'QTDE REGISTROS DO LOTE', 'type' => 'numeric'],
-            ['start' => 24, 'end' => 41, 'name' => 'valor_total', 'length' => 16, 'description' => 'Somatória de Valores', 'type' => 'numeric'],
-            ['start' => 42, 'end' => 59, 'name' => 'qtd_moedas', 'length' => 13, 'description' => 'Somatória de Quantidade de Moedas', 'type' => 'numeric'],
+            ['start' => 24, 'end' => 41, 'name' => 'valor_total', 'length' => 18, 'description' => 'Somatória de Valores', 'type' => 'numeric'],
+            ['start' => 42, 'end' => 59, 'name' => 'qtd_moedas', 'length' => 18, 'description' => 'Somatória de Quantidade de Moedas', 'type' => 'numeric'],
             ['start' => 60, 'end' => 65, 'name' => 'numero_aviso_debito', 'length' => 6, 'description' => 'Número Aviso de Débito', 'type' => 'numeric'],
             ['start' => 66, 'end' => 230, 'name' => 'uso_febraban', 'length' => 165, 'description' => 'Uso febraban brancos', 'type' => 'alpha'],
             ['start' => 231, 'end' => 240, 'name' => 'codigo_ocorrencia', 'length' => 10, 'description' => 'CÓDIGOS OCORRÊNCIAS P/ RETORNO', 'type' => 'alpha'],
