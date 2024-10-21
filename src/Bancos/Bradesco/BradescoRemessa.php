@@ -110,13 +110,14 @@ class BradescoRemessa extends RemessaAbstract
             'codigo_movimento' => '00',
             'numero_atribuido_banco' => '',
             'codigo_receita_tributo' => '0190',
-            'tipo_inscricao' => '01',
+            'tipo_inscricao' => '02',
             'codigo_iden_tributo' => '16',
             'uso_febraban' => '',
             'codigo_ocorrencias' => '',
         ];
 
         $dadosLote = array_merge($dadosFixos, $data);
+        $dadosLote['cpf_contribuinte'] =  str_pad($dadosLote['cpf_contribuinte'], 14, '0', STR_PAD_LEFT);
         return $this->generateLinha(BradescoLayout::getLoteLayout(), $dadosLote);
     }
 
