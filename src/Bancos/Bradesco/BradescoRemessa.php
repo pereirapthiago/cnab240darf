@@ -29,10 +29,11 @@ class BradescoRemessa extends RemessaAbstract
     /**
      * Geradar do header do arquivo
      *
+     * @param  int $numeroArquivo
      * @param array $data
      * return string
      */
-    private function generateHeaderArquivo(): string
+    private function generateHeaderArquivo(int $numeroArquivo): string
     {
         $dadosHeaderArquivo = [
             'codigo_banco' => $this->dadosBanco['codigo_banco'],
@@ -50,7 +51,7 @@ class BradescoRemessa extends RemessaAbstract
             'arquivo_codigo' => '1',
             'data_geracao' => $this->dataGeracao,
             'hora_geracao' => $this->horaGeracao,
-            'numero_seq_arquivo' => 1,
+            'numero_seq_arquivo' => $numeroArquivo,
             'n_versao_layout' => '089',
             'unidade_densidade' => '6250'
         ];
@@ -174,14 +175,15 @@ class BradescoRemessa extends RemessaAbstract
      * Gerar o arquivo completo
      *
      * @param array $dadosEmpresa
+     * @param int $numeroArquivo
      * @param array $dadosLotes
      * @return string
      */
-    public function generateFile(array $dadosEmpresa, array $dadosLotes): string
+    public function generateFile(array $dadosEmpresa, int $numeroArquivo, array $dadosLotes): string
     {
         $this->dadosEmpresa = $dadosEmpresa;
 
-        $headerArquivo = $this->generateHeaderArquivo();
+        $headerArquivo = $this->generateHeaderArquivo($numeroArquivo);
         $headerLote = $this->genareteHeaderLote();
         $l = '';
         $totalRegistros = 0;
