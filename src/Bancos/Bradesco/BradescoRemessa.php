@@ -200,6 +200,7 @@ class BradescoRemessa extends RemessaAbstract
         $arquivo .= $trailerLote . PHP_EOL;
         $arquivo .= $trailerArquivo . PHP_EOL;
 
-        return $arquivo;
+        // Trasnforma em windows CRLF
+        return $this->transformaWindowFile($arquivo);
     }
 }
